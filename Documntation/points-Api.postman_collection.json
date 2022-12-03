@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "126791b1-256c-4abb-9c88-30e95e9bb498",
+		"name": "points-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:1220/User?Email=mohamed930&Password=123456",
+							"host": [
+								"localhost"
+							],
+							"port": "1220",
+							"path": [
+								"User"
+							],
+							"query": [
+								{
+									"key": "Email",
+									"value": "mohamed930"
+								},
+								{
+									"key": "Password",
+									"value": "123456"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"FName\": \"Mohamed\",\r\n        \"LName\": \"Ali\",\r\n        \"username\": \"mohamed931\",\r\n        \"password\": \"123\",\r\n        \"email\": \"mo2@g.com\",\r\n        \"distcno\": \"1\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1220/User",
+							"host": [
+								"localhost"
+							],
+							"port": "1220",
+							"path": [
+								"User"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:1220/User/15",
+							"host": [
+								"localhost"
+							],
+							"port": "1220",
+							"path": [
+								"User",
+								"15"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tras",
+			"item": [
+				{
+					"name": "show tras point",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

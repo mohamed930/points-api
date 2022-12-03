@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model sysdiagrams {
+  name         String @db.NVarChar(128)
+  principal_id Int
+  diagram_id   Int    @id(map: "PK__sysdiagr__C2B05B613C1B25F3") @default(autoincrement())
+  version      Int?
+  definition   Bytes?
+
+  @@unique([principal_id, name], map: "UK_principal_name")
+}
+
+model TRAS {
+  OBJECTID          Int                      @id(map: "R14_pk")
+  address           String?                  @db.NVarChar(254)
+  id                Decimal?                 @db.Decimal(38, 8)
+  destrict          String?                  @db.NVarChar(254)
+  preview_date      Decimal?                 @db.Decimal(38, 8)
+  build_date        Decimal?                 @db.Decimal(38, 8)
+  area              String?                  @db.NVarChar(254)
+  rows_no           String?                  @db.NVarChar(254)
+  owner             String?                  @db.NVarChar(254)
+  occupers          String?                  @db.NVarChar(254)
+  build_type        String?                  @db.NVarChar(254)
+  tarmemat          String?                  @db.NVarChar(254)
+  flat_no           String?                  @db.NVarChar(254)
+  shops_no          String?                  @db.NVarChar(254)
+  originqal_use     String?                  @db.NVarChar(254)
+  now_use           String?                  @db.NVarChar(254)
+  garden            String?                  @db.NVarChar(254)
+  mrafk             String?                  @db.NVarChar(254)
+  kanon_status      String?                  @db.NVarChar(254)
+  is_it_tras        String?                  @db.NVarChar(254)
+  tasgel_date       String?                  @db.NVarChar(254)
+  tasgel_no         Decimal?                 @db.Decimal(38, 8)
+  reasons           String?                  @db.NVarChar(254)
+  tasnef_level      String?                  @db.NVarChar(254)
+  infra_status      String?                  @db.NVarChar(254)
+  tadakhol_speed    String?                  @db.NVarChar(254)
+  notes             String?                  @db.NVarChar(254)
+  pic1              String?                  @db.NVarChar(254)
+  pic2              String?                  @db.NVarChar(254)
+  pic3              String?                  @db.NVarChar(254)
+  pic4              String?                  @db.NVarChar(254)
+  pic5              String?                  @db.NVarChar(254)
+  document          String?                  @db.NVarChar(254)
+  x                 Decimal?                 @db.Decimal(38, 8)
+  y                 Decimal?                 @db.Decimal(38, 8)
+  F35               String?                  @db.NVarChar(254)
+  F36               String?                  @db.NVarChar(254)
+  F37               String?                  @db.NVarChar(254)
+  Shape             Unsupported("geometry")?
+  GDB_GEOMATTR_DATA Bytes?
+}
+
+model users {
+  id           Int     @id(map: "PK__users__3213E83F486A6885") @default(autoincrement())
+  Fname        String  @db.VarChar(30)
+  Lname        String  @db.VarChar(30)
+  username     String  @unique(map: "UQ__users__F3DBC572C1736AFF") @db.VarChar(30)
+  email        String  @unique(map: "UQ__users__AB6E6164F240DFD0") @db.VarChar(30)
+  password     String  @db.VarChar(200)
+  districeName Int
+  distric      distric @relation(fields: [districeName], references: [id], onUpdate: NoAction, map: "FK_users_distric")
+}
+
+model distric {
+  id    Int     @id(map: "PK_distric") @default(autoincrement())
+  name  String  @db.VarChar(10)
+  users users[]
+}
